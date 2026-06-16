@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cobra Concrete — Redesign Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cobra:#156493; --cobra-deep:#0E3A56;
+  --ink:#0D1117; --ink-2:#1A2128;
+  --hivis:#FFB400; --hivis-deep:#E89B00;
+  --concrete:#D8D5CE; --concrete-light:#F3F2EF;
+  --steel:#6B7280; --line:#E2E0DB; --white:#fff;
+  --maxw:1240px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Archivo",system-ui,sans-serif;color:var(--ink);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,.display{font-family:"Archivo Black",sans-serif;font-weight:400;line-height:0.95;letter-spacing:-0.01em;text-transform:uppercase}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.mono{font-family:"JetBrains Mono",monospace}
+.kicker{font-family:"JetBrains Mono",monospace;font-size:.72rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:.6em;font-family:"Archivo",sans-serif;font-weight:800;font-size:.92rem;letter-spacing:.02em;text-transform:uppercase;padding:17px 28px;border:2px solid transparent;cursor:pointer;transition:transform .12s ease,background .18s ease,color .18s ease;position:relative}
+.btn:active{transform:scale(.97)}
+.btn-hivis{background:var(--hivis);color:var(--ink)}
+.btn-hivis:hover{background:var(--hivis-deep)}
+.btn-ghost{background:transparent;color:var(--white);border-color:rgba(255,255,255,.35)}
+.btn-ghost:hover{border-color:var(--hivis);color:var(--hivis)}
+.btn-cobra{background:var(--cobra);color:#fff}
+.btn-cobra:hover{background:var(--cobra-deep)}
+.btn svg{width:18px;height:18px}
+
+/* ---------- utility bar ---------- */
+.util{background:var(--ink);color:#C7CDD4;border-bottom:1px solid rgba(255,255,255,.08)}
+.util .wrap{display:flex;justify-content:space-between;align-items:center;height:42px;gap:18px}
+.util .mono{font-size:.72rem;letter-spacing:.08em}
+.util a{color:#C7CDD4;transition:color .15s}
+.util a:hover{color:var(--hivis)}
+.util .live{display:inline-flex;align-items:center;gap:8px;color:#fff}
+.util .dot{width:8px;height:8px;border-radius:50%;background:var(--hivis);box-shadow:0 0 0 0 rgba(255,180,0,.6);animation:pulse 2.2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,180,0,.55)}70%{box-shadow:0 0 0 9px rgba(255,180,0,0)}100%{box-shadow:0 0 0 0 rgba(255,180,0,0)}}
+.util-right{display:flex;gap:22px;align-items:center}
+@media(max-width:760px){.util-areas{display:none}}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(13,17,23,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:84px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{height:52px;width:auto}
+nav.main{display:flex;gap:30px;align-items:center}
+nav.main a{color:#E7EBEF;font-weight:600;font-size:.9rem;letter-spacing:.02em;position:relative;padding:4px 0;text-transform:uppercase}
+nav.main a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--hivis);transition:width .2s}
+nav.main a:hover::after{width:100%}
+.header-cta{display:flex;align-items:center;gap:16px}
+.header-phone{color:#fff;font-family:"Archivo Black";font-size:1.05rem;letter-spacing:.01em}
+.header-phone span{display:block;font-family:"JetBrains Mono";font-size:.62rem;font-weight:500;letter-spacing:.18em;color:var(--hivis)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:26px;height:2px;background:#fff}
+@media(max-width:1080px){nav.main{display:none}.header-phone{display:none}}
+@media(max-width:1080px){.burger{display:flex}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;background:var(--ink);overflow:hidden}
+.hero-img{position:absolute;inset:0;background:url('assets/hero-slider.jpg') 78% 42%/cover no-repeat;animation:ken 18s ease-in-out infinite alternate}
+@keyframes ken{from{transform:scale(1.06)}to{transform:scale(1.16)}}
+.hero-scrim{position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(11,14,20,.96) 0%,rgba(11,14,20,.9) 38%,rgba(11,14,20,.6) 70%,rgba(11,14,20,.72) 100%),
+  linear-gradient(180deg,rgba(11,14,20,.45) 0%,rgba(11,14,20,0) 32%,rgba(11,14,20,0) 50%,rgba(11,14,20,.9) 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(90deg,#000,transparent 75%)}
+.hero-emblem{position:absolute;right:-90px;top:-60px;width:440px;opacity:.06;filter:brightness(0) invert(1)}
+.hero .wrap{position:relative;z-index:3;padding-top:64px;padding-bottom:72px;width:100%}
+.hero-kick{color:var(--hivis);margin-bottom:22px;display:flex;align-items:center;gap:14px}
+.hero-kick::before{content:"";width:42px;height:2px;background:var(--hivis)}
+.hero h1{color:#fff;font-size:clamp(2.7rem,7.2vw,6rem);max-width:16ch}
+.hero h1 .blue{color:#fff;-webkit-text-stroke:0;position:relative}
+.hero h1 em{font-style:normal;color:var(--hivis)}
+.hero-sub{color:#C7CDD4;font-size:clamp(1.05rem,1.6vw,1.3rem);max-width:54ch;margin:26px 0 36px;line-height:1.55}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.hero-trust{display:flex;gap:34px;flex-wrap:wrap;margin-top:48px;padding-top:30px;border-top:1px solid rgba(255,255,255,.14)}
+.hero-trust .t{display:flex;flex-direction:column;gap:4px}
+.hero-trust .t b{font-family:"Archivo Black";color:#fff;font-size:1.7rem;line-height:1}
+.hero-trust .t span{font-family:"JetBrains Mono";font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--steel)}
+
+/* ---------- hazard divider ---------- */
+.hazard{height:14px;background:repeating-linear-gradient(135deg,var(--hivis) 0 22px,var(--ink) 22px 44px)}
+
+/* ---------- stats / intro ---------- */
+.intro{background:var(--concrete-light);padding:clamp(64px,9vw,110px) 0;position:relative}
+.intro-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+@media(max-width:900px){.intro-grid{grid-template-columns:1fr;gap:36px}}
+.intro h2{font-size:clamp(2rem,4vw,3.1rem);max-width:18ch;margin-bottom:24px}
+.intro h2 em{font-style:normal;color:var(--cobra)}
+.intro p{color:#3a424c;font-size:1.06rem;max-width:52ch;margin-bottom:18px}
+.intro .badge-wrap{position:relative;display:flex;justify-content:center}
+.intro .badge-wrap img{width:min(100%,360px);animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.intro .badge-core{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.intro .badge-core b{font-family:"Archivo Black";font-size:2.4rem;color:var(--cobra);display:block;line-height:.9}
+.intro .badge-core span{font-family:"JetBrains Mono";font-size:.66rem;letter-spacing:.2em;color:var(--steel)}
+
+/* ---------- services ---------- */
+.services{background:var(--white);padding:clamp(64px,9vw,120px) 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:54px;flex-wrap:wrap}
+.sec-head .kicker{color:var(--cobra);display:flex;align-items:center;gap:12px}
+.sec-head .kicker::before{content:"";width:34px;height:2px;background:var(--hivis)}
+.sec-head h2{font-size:clamp(2rem,4vw,3.2rem);margin-top:14px;max-width:16ch}
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);border-top:2px solid var(--ink);border-left:2px solid var(--ink)}
+@media(max-width:820px){.svc-grid{grid-template-columns:1fr}}
+.svc{position:relative;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:34px 32px;display:flex;gap:24px;background:#fff;transition:background .2s;overflow:hidden;min-height:188px}
+.svc::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--hivis);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.svc:hover{background:var(--concrete-light)}
+.svc:hover::before{transform:scaleX(1)}
+.svc .num{font-family:"JetBrains Mono";font-size:.8rem;font-weight:700;color:var(--cobra)}
+.svc .thumb{width:96px;height:96px;flex-shrink:0;object-fit:cover;filter:grayscale(.15) contrast(1.05);border:1px solid var(--line)}
+.svc .body h3{font-size:1.35rem;margin-bottom:8px;letter-spacing:-.01em}
+.svc .body p{font-size:.95rem;color:#4a525c;max-width:34ch}
+.svc .go{position:absolute;right:26px;bottom:26px;color:var(--cobra);font-family:"Archivo Black";font-size:1.4rem;opacity:0;transform:translateX(-6px);transition:.25s}
+.svc:hover .go{opacity:1;transform:translateX(0)}
+
+/* ---------- volumetric split ---------- */
+.volu{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.volu .inner{display:grid;grid-template-columns:1fr 1fr;min-height:560px}
+@media(max-width:900px){.volu .inner{grid-template-columns:1fr}}
+.volu-photo{background:url('assets/svc-mixbarrowlay.jpg') center/cover no-repeat;min-height:340px;position:relative}
+.volu-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(13,17,23,.35))}
+.volu-text{padding:clamp(48px,6vw,84px);display:flex;flex-direction:column;justify-content:center}
+.volu-text .kicker{color:var(--hivis);margin-bottom:20px}
+.volu-text h2{font-size:clamp(1.9rem,3.6vw,3rem);margin-bottom:22px;max-width:15ch}
+.volu-text h2 em{font-style:normal;color:var(--hivis)}
+.volu-text p{color:#AEB6BF;max-width:46ch;margin-bottom:30px;font-size:1.05rem}
+.spec-list{display:grid;gap:0;margin-bottom:34px;border-top:1px solid rgba(255,255,255,.14)}
+.spec-list .row{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.spec-list .row .l{font-family:"JetBrains Mono";font-size:.78rem;letter-spacing:.06em;color:#fff}
+.spec-list .row .v{font-family:"JetBrains Mono";font-size:.78rem;color:var(--hivis)}
+
+/* ---------- grades spec sheet ---------- */
+.grades{background:var(--concrete-light);padding:clamp(64px,9vw,120px) 0}
+.grades .sheet{border:2px solid var(--ink);background:#fff}
+.grades .sheet-top{display:flex;justify-content:space-between;align-items:center;background:var(--ink);color:#fff;padding:16px 24px}
+.grades .sheet-top .mono{font-size:.72rem;letter-spacing:.16em;color:var(--hivis)}
+.grades .sheet-top b{font-family:"Archivo Black";text-transform:uppercase;font-size:1.05rem}
+.grade-row{display:grid;grid-template-columns:120px 1fr auto;gap:20px;padding:18px 24px;border-bottom:1px solid var(--line);align-items:center}
+.grade-row:last-child{border-bottom:0}
+.grade-row:nth-child(even){background:var(--concrete-light)}
+.grade-row .g{font-family:"Archivo Black";color:var(--cobra);font-size:1.25rem}
+.grade-row .d{color:#3a424c;font-size:.98rem}
+.grade-row .u{font-family:"JetBrains Mono";font-size:.74rem;color:var(--steel);letter-spacing:.06em;white-space:nowrap}
+@media(max-width:680px){.grade-row{grid-template-columns:84px 1fr;gap:10px}.grade-row .u{display:none}}
+
+/* ---------- areas ---------- */
+.areas{background:var(--ink);color:#fff;padding:clamp(64px,9vw,120px) 0;position:relative;overflow:hidden}
+.areas-emblem{position:absolute;left:-120px;bottom:-120px;width:420px;opacity:.05;filter:brightness(0) invert(1);animation:spin 80s linear infinite}
+.areas .sec-head h2{color:#fff}
+.areas .sec-head .kicker{color:var(--hivis)}
+.area-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(255,255,255,.14);position:relative;z-index:2}
+@media(max-width:760px){.area-grid{grid-template-columns:repeat(2,1fr)}}
+.area{padding:20px 4px;border-bottom:1px solid rgba(255,255,255,.14);border-right:1px solid rgba(255,255,255,.14);font-family:"Archivo Black";text-transform:uppercase;font-size:1.05rem;letter-spacing:.01em;color:#E7EBEF;transition:.2s;display:flex;align-items:center;gap:10px}
+.area:hover{color:var(--hivis);padding-left:14px}
+.area .mono{font-family:"JetBrains Mono";font-size:.62rem;color:var(--steel);font-weight:400}
+
+/* ---------- CTA band ---------- */
+.cta-band{background:var(--cobra);position:relative;overflow:hidden}
+.cta-band .inner{padding:clamp(54px,7vw,88px) 0;display:flex;justify-content:space-between;align-items:center;gap:36px;flex-wrap:wrap;position:relative;z-index:2}
+.cta-band h2{color:#fff;font-size:clamp(1.9rem,4vw,3.1rem);max-width:18ch}
+.cta-band .sub{color:#D6E8F2;font-family:"JetBrains Mono";font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.cta-band .right{display:flex;flex-direction:column;gap:14px}
+.cta-band .phone-big{font-family:"Archivo Black";color:#fff;font-size:clamp(1.8rem,3.6vw,2.6rem);letter-spacing:.01em}
+.cta-hazard{position:absolute;top:0;left:0;width:100%;height:8px;background:repeating-linear-gradient(135deg,var(--hivis) 0 22px,transparent 22px 44px)}
+
+/* ---------- footer ---------- */
+footer{background:#080B0F;color:#9AA3AD;padding:72px 0 32px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08)}
+@media(max-width:860px){.foot-grid{grid-template-columns:1fr 1fr;gap:32px}}
+@media(max-width:520px){.foot-grid{grid-template-columns:1fr}}
+footer img.flogo{height:58px;margin-bottom:20px}
+footer p.about{font-size:.92rem;max-width:34ch;line-height:1.7}
+footer h4{font-family:"JetBrains Mono";font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--hivis);margin-bottom:18px}
+footer ul{list-style:none}
+footer ul li{margin-bottom:11px}
+footer ul li a{font-size:.94rem;transition:color .15s}
+footer ul li a:hover{color:#fff}
+footer .ct a{display:block;color:#fff;font-size:.98rem;margin-bottom:10px}
+footer .ct .mono{font-family:"JetBrains Mono";font-size:.82rem;color:#9AA3AD;line-height:1.7}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:12px}
+.foot-bottom .mono{font-size:.72rem;letter-spacing:.06em;color:#6B7280}
+.foot-bottom a{color:var(--hivis)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* concept ribbon */
+.concept{position:fixed;bottom:0;left:0;right:0;z-index:99;background:var(--hivis);color:var(--ink);text-align:center;font-family:"JetBrains Mono";font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;padding:7px;border-top:2px solid var(--ink)}
+</style>
+</head>
+<body>
+
+<!-- utility bar -->
+<div class="util">
+  <div class="wrap">
+    <div class="mono util-areas">London · Kent · Surrey &nbsp;|&nbsp; Beckenham · Bromley · Croydon · Sutton</div>
+    <div class="util-right">
+      <span class="live mono"><span class="dot"></span>24HR SERVICE — TRADE &amp; DIY</span>
+      <a href="mailto:tony@cobraconcrete.co.uk" class="mono">tony@cobraconcrete.co.uk</a>
+    </div>
+  </div>
+</div>
+
+<!-- header -->
+<header>
+  <div class="wrap">
+    <a class="brand" href="#"><img src="assets/logo.png" alt="Cobra Concrete Ltd"></a>
+    <nav class="main">
+      <a href="#services">Services</a>
+      <a href="#volumetric">Mix on Site</a>
+      <a href="#grades">Specs</a>
+      <a href="#areas">Areas</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-cta">
+      <a class="header-phone" href="tel:02086655960">020 8665 5960<span>CALL THE YARD</span></a>
+      <a class="btn btn-hivis" href="#contact">Get a Quote</a>
+      <div class="burger"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<!-- hero -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-scrim"></div>
+  <div class="hero-grid"></div>
+  <img class="hero-emblem" src="assets/emblem.png" alt="">
+  <div class="wrap">
+    <div class="hero-kick kicker">Ready-Mix · Volumetric · On-Site</div>
+    <h1>Concrete that <em>strikes</em> on time. Every load.</h1>
+    <p class="hero-sub">Family-run supplier with 20+ years on the tools. We mix to your exact strength on-site, barrow it where you need it, and only charge for what you pour — across London, Kent &amp; Surrey.</p>
+    <div class="hero-cta">
+      <a class="btn btn-hivis" href="#contact">Get a fast quote
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="tel:02086655960">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+        020 8665 5960</a>
+    </div>
+    <div class="hero-trust">
+      <div class="t"><b>20+</b><span>Years on site</span></div>
+      <div class="t"><b>24hr</b><span>Trade &amp; DIY</span></div>
+      <div class="t"><b>0</b><span>Part-load charges</span></div>
+      <div class="t"><b>£0</b><span>Wasted concrete</span></div>
+    </div>
+  </div>
+</section>
+<div class="hazard"></div>
+
+<!-- intro + emblem -->
+<section class="intro">
+  <div class="wrap intro-grid">
+    <div class="reveal">
+      <div class="kicker" style="color:var(--cobra);margin-bottom:18px">Who we are</div>
+      <h2>A <em>small family firm</em> that pours like a big one.</h2>
+      <p>Cobra Concrete has supplied trade and DIY customers across London, Kent and Surrey for over two decades. From a single barrow load for a garden path to foundations for a new build, we turn up when we say we will and we get it right first time.</p>
+      <p>Our volumetric vehicles mix fresh on your site — so you get the exact grade and the exact volume, with no part loads and nothing going off in the back of a drum on the way to you.</p>
+      <a class="btn btn-cobra" href="#services" style="margin-top:14px">Our concrete services
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="badge-wrap reveal">
+      <img src="assets/emblem.png" alt="Cobra Concrete badge">
+      <div class="badge-core"><b>EST.<br>20+</b><span>YEARS</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- services -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="kicker">What we do</div>
+        <h2>One supplier. The whole pour.</h2>
+      </div>
+      <p class="mono" style="font-size:.78rem;color:var(--steel);letter-spacing:.06em;max-width:30ch">SUPPLY · MIX-ON-SITE · BARROW · PUMP · LAY · FOUNDATIONS</p>
+    </div>
+    <div class="svc-grid reveal">
+      <a class="svc" href="#">
+        <div><span class="num">01</span></div>
+        <img class="thumb" src="assets/hero-slider.jpg" alt="">
+        <div class="body"><h3>Mix on Site</h3><p>Volumetric mixing to your exact strength and volume. Pay only for what you pour.</p></div>
+        <span class="go">→</span>
+      </a>
+      <a class="svc" href="#">
+        <div><span class="num">02</span></div>
+        <img class="thumb" src="assets/svc-pumping.jpg" alt="">
+        <div class="body"><h3>Concrete Pumping</h3><p>Reach the tricky pours — over buildings, through houses, into back gardens.</p></div>
+        <span class="go">→</span>
+      </a>
+      <a class="svc" href="#">
+        <div><span class="num">03</span></div>
+        <img class="thumb" src="assets/svc-barrow.jpg" alt="">
+        <div class="body"><h3>Barrow Service</h3><p>We barrow it straight from the truck to where you need it. Ideal for domestic jobs.</p></div>
+        <span class="go">→</span>
+      </a>
+      <a class="svc" href="#">
+        <div><span class="num">04</span></div>
+        <img class="thumb" src="assets/svc-laying.jpg" alt="">
+        <div class="body"><h3>Laying Service</h3><p>Not laying it yourself? Our team levels, places and finishes the slab for you.</p></div>
+        <span class="go">→</span>
+      </a>
+      <a class="svc" href="#">
+        <div><span class="num">05</span></div>
+        <img class="thumb" src="assets/svc-mixbarrowlay.jpg" alt="">
+        <div class="body"><h3>Mix, Barrow &amp; Lay</h3><p>The whole job in one visit — mixed, moved and laid as a single all-in service.</p></div>
+        <span class="go">→</span>
+      </a>
+      <a class="svc" href="#">
+        <div><span class="num">06</span></div>
+        <img class="thumb" src="assets/svc-laying.jpg" alt="">
+        <div class="body"><h3>Foundations</h3><p>Site surveys, excavation, level bases and reinforced foundations built to regs.</p></div>
+        <span class="go">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- volumetric split -->
+<section class="volu" id="volumetric">
+  <div class="inner">
+    <div class="volu-photo reveal"></div>
+    <div class="volu-text reveal">
+      <div class="kicker">Why volumetric</div>
+      <h2>You pay for what you <em>pour</em>. Nothing else.</h2>
+      <p>Drum mixers leave you guessing — order too little and you're stuck, order too much and you've paid for concrete that ends up in a skip. Our on-site volumetric mixers solve both. We mix fresh at your kerb, to the exact grade, in the exact quantity.</p>
+      <div class="spec-list">
+        <div class="row"><span class="l">FRESH MIX</span><span class="v">Mixed on your site</span></div>
+        <div class="row"><span class="l">EXACT GRADE</span><span class="v">C10 → C40 to spec</span></div>
+        <div class="row"><span class="l">PART LOADS</span><span class="v">No minimum waste</span></div>
+        <div class="row"><span class="l">RESPONSE</span><span class="v">Same-day · 24hr</span></div>
+      </div>
+      <a class="btn btn-hivis" href="#contact" style="align-self:flex-start">Book a volumetric load
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- grades spec sheet -->
+<section class="grades" id="grades">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="kicker">Concrete specs</div>
+        <h2>Right mix for the job.</h2>
+      </div>
+      <p class="mono" style="font-size:.78rem;color:var(--steel);letter-spacing:.06em;max-width:32ch">NOT SURE WHICH GRADE? CALL THE YARD — WE'LL SPEC IT FOR YOU.</p>
+    </div>
+    <div class="sheet reveal">
+      <div class="sheet-top"><b>Mix Reference</b><span class="mono">COBRA-CONCRETE / GRADE SHEET</span></div>
+      <div class="grade-row"><span class="g">C10 / C15</span><span class="d">Kerb bedding, trench fill, non-structural backing.</span><span class="u">10–15 N/mm²</span></div>
+      <div class="grade-row"><span class="g">C20 / C25</span><span class="d">Domestic foundations, footings, garage &amp; shed bases.</span><span class="u">20–25 N/mm²</span></div>
+      <div class="grade-row"><span class="g">C30 / C35</span><span class="d">Driveways, paths, hardstanding, external slabs.</span><span class="u">30–35 N/mm²</span></div>
+      <div class="grade-row"><span class="g">C40</span><span class="d">Heavy-duty commercial, structural &amp; agricultural.</span><span class="u">40 N/mm²</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- areas -->
+<section class="areas" id="areas">
+  <img class="areas-emblem" src="assets/emblem.png" alt="">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="kicker">Where we pour</div>
+        <h2>On site across the South East.</h2>
+      </div>
+      <a class="btn btn-ghost reveal" href="#" style="border-color:rgba(255,255,255,.3)">All areas we cover
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="area-grid reveal">
+      <div class="area"><span class="mono">01</span>Beckenham</div>
+      <div class="area"><span class="mono">02</span>Bromley</div>
+      <div class="area"><span class="mono">03</span>Croydon</div>
+      <div class="area"><span class="mono">04</span>Sutton</div>
+      <div class="area"><span class="mono">05</span>Sidcup</div>
+      <div class="area"><span class="mono">06</span>Bexley</div>
+      <div class="area"><span class="mono">07</span>Orpington</div>
+      <div class="area"><span class="mono">08</span>Greenwich</div>
+      <div class="area"><span class="mono">09</span>Epsom</div>
+      <div class="area"><span class="mono">10</span>Swanley</div>
+      <div class="area"><span class="mono">11</span>Reigate</div>
+      <div class="area"><span class="mono">12</span>Kingswood</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA band -->
+<section class="cta-band" id="contact">
+  <div class="cta-hazard"></div>
+  <div class="wrap inner">
+    <div class="reveal">
+      <div class="sub">Need concrete today?</div>
+      <h2>Tell us the job. We'll tell you the mix and the price.</h2>
+    </div>
+    <div class="right reveal">
+      <a class="phone-big" href="tel:02086655960">020 8665 5960</a>
+      <a class="btn btn-hivis" href="mailto:tony@cobraconcrete.co.uk">Email Tony for a quote
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img class="flogo" src="assets/logo.png" alt="Cobra Concrete Ltd">
+        <p class="about">Family-run ready-mix and volumetric concrete supplier serving trade and DIY customers across London, Kent and Surrey for over 20 years.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Mix on Site</a></li>
+          <li><a href="#">Concrete Pumping</a></li>
+          <li><a href="#">Foundations</a></li>
+          <li><a href="#">Barrow Service</a></li>
+          <li><a href="#">Mix, Barrow &amp; Lay</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">Concrete Specs</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Areas We Cover</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="ct">
+        <h4>Contact</h4>
+        <a href="tel:02086655960">020 8665 5960</a>
+        <a href="mailto:tony@cobraconcrete.co.uk">tony@cobraconcrete.co.uk</a>
+        <p class="mono">Cobra Concrete Ltd<br>7 Hayes Lane, Beckenham<br>BR3 6QS</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="mono">© 2026 Cobra Concrete Ltd. All rights reserved.</span>
+      <span class="mono">Concept by <a href="https://www.numediagroup.co.uk/">Nu Media Group</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="concept">◆ Redesign concept — Nu Media Group · not the live site ◆</div>
+
+<script>
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4*60)+'ms';io.observe(el)});
+</script>
+</body>
+</html>
