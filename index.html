@@ -6,303 +6,295 @@
 <title>Cobra Concrete — Concept</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#121519;--ink-2:#2A3138;--blue:#156493;--blue-deep:#0E4A6E;
-  --grey:#69757E;--grey-soft:#A2ACB3;--line:#E9EDF0;--line-2:#F0F3F5;
-  --bg:#FFFFFF;--bg-soft:#F8F9FA;--maxw:1200px;
+  --blue:#156493;--blue-deep:#0F4A6E;--blue-dark:#0C3A57;
+  --ink:#1E2A31;--grey:#586771;--grey-soft:#8A98A1;--line:#E5EBEF;
+  --bg:#fff;--bg-soft:#F4F7F9;--maxw:1200px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:"Archivo",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:"Figtree",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-weight:800;line-height:1.12;letter-spacing:-.02em}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
-h1,h2,h3{font-weight:300;letter-spacing:-.02em;line-height:1.06}
-.label{font-size:.72rem;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--blue)}
-.label-grey{color:var(--grey-soft)}
-.rule{height:1px;width:64px;background:var(--blue);margin:28px 0}
-.rule-c{margin-left:auto;margin-right:auto}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.kick{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+.btn{display:inline-flex;align-items:center;gap:.55em;font-weight:700;font-size:.94rem;padding:14px 26px;border-radius:7px;transition:.2s;border:2px solid transparent;cursor:pointer}
+.btn svg{width:17px;height:17px}
+.btn-pri{background:var(--blue);color:#fff}
+.btn-pri:hover{background:var(--blue-deep)}
+.btn-out{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+.btn-out:hover{background:#fff;color:var(--blue);border-color:#fff}
+.btn-ink{background:transparent;color:var(--blue);border-color:#CFE0EA}
+.btn-ink:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
 
-/* nav */
-header{position:fixed;top:0;left:0;right:0;z-index:60;transition:.4s ease}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:84px}
-header.solid{background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.brand img{height:46px;width:auto}
-nav.main{display:flex;gap:36px;align-items:center}
-nav.main a{font-size:.74rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);opacity:.7;transition:.2s}
-nav.main a:hover{opacity:1;color:var(--blue)}
-.nav-cta{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);display:inline-flex;align-items:center;gap:8px;padding-bottom:3px;border-bottom:1px solid var(--blue)}
-.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}.burger span{width:24px;height:1.5px;background:var(--ink)}
-@media(max-width:920px){nav.main{display:none}.burger{display:flex}}
+/* utility bar */
+.util{background:var(--blue-dark);color:#C5D6E2}
+.util .wrap{display:flex;justify-content:space-between;align-items:center;height:44px;font-size:.82rem;font-weight:500;gap:18px}
+.util a{color:#C5D6E2}.util a:hover{color:#fff}
+.util .l{display:flex;gap:22px;align-items:center}
+.util .r{display:flex;gap:20px;align-items:center}
+.util .tag{display:inline-flex;align-items:center;gap:8px;color:#fff;font-weight:600}
+.util .dot{width:8px;height:8px;border-radius:50%;background:#5EC26A;box-shadow:0 0 0 3px rgba(94,194,106,.25)}
+@media(max-width:760px){.util .areas{display:none}}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:78px}
+.brand img{height:50px;width:auto}
+nav.main{display:flex;gap:26px;align-items:center}
+nav.main a{font-weight:600;font-size:.92rem;color:var(--ink);transition:.18s}
+nav.main a:hover{color:var(--blue)}
+.h-cta{display:flex;align-items:center;gap:18px}
+.h-phone{font-weight:800;color:var(--ink);font-size:1.05rem;white-space:nowrap}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}.burger span{width:25px;height:2.5px;background:var(--ink);border-radius:2px}
+@media(max-width:1040px){nav.main,.h-phone{display:none}.burger{display:flex}}
 
 /* hero */
-.hero{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 32px 90px;position:relative}
-.hero .label{margin-bottom:34px}
-.hero h1{font-size:clamp(3rem,8.5vw,7rem);font-weight:200;max-width:14ch;letter-spacing:-.025em}
-.hero h1 b{font-weight:500;color:var(--blue)}
-.hero .sub{color:var(--grey);font-size:clamp(1.08rem,1.5vw,1.3rem);max-width:50ch;margin-top:8px;font-weight:300}
-.hero-cta{display:flex;gap:30px;align-items:center;margin-top:48px;flex-wrap:wrap;justify-content:center}
-.btn{display:inline-flex;align-items:center;gap:.6em;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;transition:.25s}
-.btn svg{width:15px;height:15px;transition:.25s}
-.btn-fill{background:var(--blue);color:#fff;padding:17px 30px;border-radius:3px}
-.btn-fill:hover{background:var(--blue-deep)}.btn-fill:hover svg{transform:translateX(4px)}
-.btn-text{color:var(--ink)}.btn-text svg{color:var(--blue)}.btn-text:hover{color:var(--blue)}
-.scroll-cue{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--grey-soft);display:flex;flex-direction:column;align-items:center;gap:10px}
-.scroll-cue .ln{width:1px;height:42px;background:linear-gradient(var(--blue),transparent)}
+.hero{position:relative;color:#fff;overflow:hidden}
+.hero .bg{position:absolute;inset:0;background:url('assets/hero-slider.jpg') center 35%/cover no-repeat}
+.hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,58,87,.92) 0%,rgba(12,58,87,.78) 42%,rgba(12,58,87,.4) 75%,rgba(15,74,110,.5) 100%)}
+.hero .wrap{position:relative;z-index:2;padding:clamp(70px,11vw,128px) 28px}
+.hero .inner{max-width:620px}
+.hero .kick{color:#86C8EC;margin-bottom:20px}
+.hero h1{font-size:clamp(2.2rem,4.6vw,3.7rem);font-weight:800;letter-spacing:-.025em}
+.hero h1 em{font-style:normal;color:#fff;border-bottom:4px solid var(--blue);padding-bottom:2px}
+.hero p{font-size:clamp(1.05rem,1.5vw,1.22rem);color:#D7E5EF;margin:22px 0 32px;max-width:46ch;font-weight:400}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-trust{display:flex;gap:30px;flex-wrap:wrap;margin-top:40px;padding-top:28px;border-top:1px solid rgba(255,255,255,.2)}
+.hero-trust .t{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.95rem}
+.hero-trust .t svg{width:22px;height:22px;color:#86C8EC;flex-shrink:0}
 
-/* cinematic photo band */
-.band{position:relative;height:clamp(420px,72vh,720px);overflow:hidden}
-.band .img{position:absolute;inset:0;background:url('assets/hero-slider.jpg') center 42%/cover no-repeat;transform:scale(1.02)}
-.band .img::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,30,45,.55) 0%,rgba(10,30,45,.05) 38%,rgba(10,30,45,0) 70%)}
-.band .cap{position:absolute;left:0;right:0;bottom:0;padding:clamp(28px,5vw,56px)}
-.band .cap .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
-.band .cap .label{color:rgba(255,255,255,.85)}
-.band .cap p{color:#fff;font-weight:300;font-size:clamp(1.1rem,2vw,1.5rem);max-width:20ch;margin-top:14px;letter-spacing:-.01em}
-.band .stats{display:flex;gap:40px}
-.band .stats .s b{display:block;font-size:2rem;font-weight:200;color:#fff;line-height:1}
-.band .stats .s span{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.6)}
-@media(max-width:680px){.band .stats{display:none}}
-
-/* section base */
-.sec{padding:clamp(90px,13vw,168px) 0}
+/* section */
+.sec{padding:clamp(64px,9vw,104px) 0}
 .sec-soft{background:var(--bg-soft)}
-.center{text-align:center;max-width:760px;margin:0 auto}
-.center h2{font-size:clamp(2rem,4.2vw,3.4rem);margin-top:18px}
-.center .sub{color:var(--grey);font-size:1.14rem;font-weight:300;margin-top:24px}
+.head{max-width:680px;margin-bottom:clamp(38px,5vw,56px)}
+.head.center{margin-left:auto;margin-right:auto;text-align:center}
+.head h2{font-size:clamp(1.9rem,3.6vw,2.8rem);margin:14px 0 14px}
+.head p{color:var(--grey);font-size:1.08rem}
 
-/* intro statement */
-.intro h2{font-size:clamp(2.1rem,4.6vw,3.7rem);font-weight:200;max-width:20ch}
-.intro h2 b{font-weight:500;color:var(--blue)}
+/* service tiles (their signature element, upgraded) */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:880px){.tiles{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.tiles{grid-template-columns:1fr}}
+.tile{position:relative;height:280px;border-radius:12px;overflow:hidden;display:flex;align-items:flex-end;color:#fff;box-shadow:0 8px 26px rgba(15,74,110,.12)}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,30,45,.9) 0%,rgba(10,30,45,.35) 45%,rgba(10,30,45,.05) 100%);transition:.3s}
+.tile:hover img{transform:scale(1.07)}
+.tile .c{position:relative;z-index:2;padding:24px;width:100%}
+.tile h3{font-size:1.3rem;margin-bottom:4px}
+.tile .go{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:.85rem;color:#86C8EC;opacity:0;transform:translateY(6px);transition:.25s}
+.tile:hover .go{opacity:1;transform:none}
+.tile .go svg{width:14px;height:14px}
 
-/* services editorial grid */
-.svc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:clamp(44px,6vw,72px)}
-.svc-head h2{font-size:clamp(2rem,4.2vw,3.2rem);margin-top:16px;max-width:16ch}
-.svc-head .sub{color:var(--grey);font-weight:300;max-width:30ch}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,3.5vw,52px)}
-@media(max-width:880px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.svc-grid{grid-template-columns:1fr}}
-.svc{group:cursor}
-.svc .ph{position:relative;overflow:hidden;aspect-ratio:4/3;margin-bottom:24px}
-.svc .ph img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.16,1,.3,1);filter:saturate(.96)}
-.svc:hover .ph img{transform:scale(1.06)}
-.svc .ph .n{position:absolute;top:16px;left:16px;font-size:.7rem;font-weight:600;letter-spacing:.2em;color:#fff;background:rgba(18,21,25,.42);backdrop-filter:blur(4px);padding:6px 11px}
-.svc h3{font-size:1.4rem;font-weight:400;letter-spacing:-.01em;margin-bottom:10px}
-.svc p{color:var(--grey);font-size:.98rem;font-weight:300}
-.svc .ln{margin-top:18px;height:1px;width:0;background:var(--blue);transition:width .5s cubic-bezier(.16,1,.3,1)}
-.svc:hover .ln{width:56px}
+/* about */
+.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,72px);align-items:center}
+@media(max-width:880px){.about .wrap{grid-template-columns:1fr;gap:34px}}
+.about .media{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 14px 40px rgba(15,74,110,.16)}
+.about .media img{width:100%;height:100%;object-fit:cover}
+.about .emblem{position:absolute;right:-26px;bottom:-26px;width:150px;opacity:.16}
+.about h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin:14px 0 18px}
+.about p{color:var(--grey);margin-bottom:16px}
+.about .points{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px;margin:24px 0 30px}
+.about .pt{display:flex;align-items:flex-start;gap:10px;font-weight:600;font-size:.96rem}
+.about .pt svg{width:20px;height:20px;color:var(--blue);flex-shrink:0;margin-top:2px}
 
-/* feature split */
-.feat .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,6vw,96px);align-items:center}
-@media(max-width:880px){.feat .wrap{grid-template-columns:1fr;gap:40px}}
-.feat .ph{aspect-ratio:5/6;overflow:hidden}
-.feat .ph img{width:100%;height:100%;object-fit:cover}
-.feat h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:200;margin:18px 0 26px;max-width:13ch}
-.feat h2 b{font-weight:500;color:var(--blue)}
-.feat p{color:var(--grey);font-weight:300;margin-bottom:34px;max-width:44ch}
-.flist{display:grid;gap:0;margin-bottom:40px}
-.flist .r{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding:18px 0;border-top:1px solid var(--line)}
-.flist .r:last-child{border-bottom:1px solid var(--line)}
-.flist .r .k{font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--blue)}
-.flist .r .v{color:var(--ink);font-weight:300;font-size:1.06rem}
-
-/* grades */
-.grades-list{max-width:920px;margin:0 auto}
-.grade{display:grid;grid-template-columns:.4fr 1fr auto;gap:30px;align-items:center;padding:30px 6px;border-top:1px solid var(--line);transition:.3s}
-.grade:last-child{border-bottom:1px solid var(--line)}
-.grade:hover{padding-left:18px;background:linear-gradient(90deg,var(--bg-soft),transparent)}
-.grade .g{font-size:1.7rem;font-weight:200;color:var(--blue)}
-.grade .d{color:var(--grey);font-weight:300}
-.grade .u{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--grey-soft);white-space:nowrap}
-@media(max-width:620px){.grade{grid-template-columns:1fr;gap:6px}.grade .u{display:none}}
+/* why band */
+.why{background:var(--blue);color:#fff}
+.why .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;padding-top:clamp(50px,6vw,72px);padding-bottom:clamp(50px,6vw,72px)}
+@media(max-width:760px){.why .wrap{grid-template-columns:1fr 1fr;gap:28px}}
+.why .w b{display:block;font-size:2.4rem;font-weight:800;line-height:1;letter-spacing:-.03em}
+.why .w span{display:block;margin-top:8px;color:#CFE3EF;font-size:.95rem;font-weight:500}
 
 /* areas */
-.areas .center{margin-bottom:clamp(40px,5vw,60px)}
-.area-flow{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 0;max-width:920px;margin:0 auto;text-align:center}
-.area-flow a{font-size:clamp(1.3rem,2.6vw,2rem);font-weight:200;color:var(--ink);padding:0 22px;transition:.25s;position:relative}
-.area-flow a:not(:last-child)::after{content:"·";position:absolute;right:-4px;color:var(--line);font-weight:300}
-.area-flow a:hover{color:var(--blue)}
+.areas-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:760px){.areas-grid{grid-template-columns:repeat(2,1fr)}}
+.area{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:15px 18px;font-weight:600;font-size:.98rem;transition:.18s}
+.area:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px);box-shadow:0 8px 20px rgba(15,74,110,.1)}
+.area svg{width:17px;height:17px;color:var(--blue)}
 
-/* cta band */
-.cta{position:relative;overflow:hidden;text-align:center;padding:clamp(100px,14vw,180px) 0}
-.cta .img{position:absolute;inset:0;background:url('assets/svc-pumping.jpg') center/cover no-repeat}
-.cta .img::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(10,30,45,.82),rgba(8,24,36,.9))}
-.cta .wrap{position:relative;z-index:2;max-width:720px}
-.cta .label{color:rgba(255,255,255,.7)}
-.cta h2{color:#fff;font-size:clamp(2.1rem,4.6vw,3.7rem);font-weight:200;margin:20px 0 16px}
-.cta p{color:rgba(255,255,255,.8);font-weight:300;font-size:1.12rem;margin-bottom:42px}
-.cta-row{display:flex;gap:30px;justify-content:center;align-items:center;flex-wrap:wrap}
-.btn-white{background:#fff;color:var(--ink);padding:17px 30px;border-radius:3px}
-.btn-white:hover{background:var(--blue);color:#fff}.btn-white:hover svg{transform:translateX(4px)}
-.cta .phone{color:#fff;font-size:1.3rem;font-weight:200;display:inline-flex;align-items:center;gap:11px}
-.cta .phone svg{width:19px;height:19px;color:#fff}
+/* cta */
+.cta{position:relative;color:#fff;overflow:hidden;text-align:center}
+.cta .bg{position:absolute;inset:0;background:url('assets/svc-pumping.jpg') center/cover no-repeat}
+.cta .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(12,58,87,.92),rgba(12,58,87,.94))}
+.cta .wrap{position:relative;z-index:2;padding:clamp(64px,9vw,104px) 28px;max-width:760px}
+.cta h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:14px}
+.cta p{color:#D7E5EF;font-size:1.12rem;margin-bottom:32px}
+.cta .row{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap}
+.cta .phone{font-size:1.5rem;font-weight:800;color:#fff;display:inline-flex;align-items:center;gap:11px}
+.cta .phone svg{width:20px;height:20px}
 
 /* footer */
-footer{background:var(--ink);color:#9AA6AE;padding:clamp(70px,9vw,110px) 0 40px}
-.f-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:54px;border-bottom:1px solid rgba(255,255,255,.1)}
-@media(max-width:820px){.f-top{grid-template-columns:1fr 1fr;gap:34px}}
-@media(max-width:520px){.f-top{grid-template-columns:1fr}}
-footer .flogo{height:50px;filter:brightness(0) invert(1);opacity:.92;margin-bottom:22px}
-footer .ab{font-size:.95rem;font-weight:300;line-height:1.8;max-width:32ch}
-footer h4{color:#fff;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;margin-bottom:20px;font-weight:600}
-footer ul{list-style:none}footer li{margin-bottom:12px}
-footer li a{font-size:.95rem;font-weight:300;transition:.2s}footer li a:hover{color:#fff}
-footer .ct a{display:block;color:#fff;font-weight:400;margin-bottom:11px}
-footer .ct .addr{font-size:.92rem;font-weight:300;line-height:1.8}
-.f-base{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:30px;font-size:.78rem;letter-spacing:.04em;color:#69757E}
-.f-base a{color:#fff}
+footer{background:var(--blue-dark);color:#A8C2D2;padding:64px 0 28px}
+.f-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:42px;border-bottom:1px solid rgba(255,255,255,.12)}
+@media(max-width:820px){.f-grid{grid-template-columns:1fr 1fr;gap:30px}}
+@media(max-width:520px){.f-grid{grid-template-columns:1fr}}
+footer .flogo{height:54px;filter:brightness(0) invert(1);opacity:.95;margin-bottom:18px}
+footer .ab{font-size:.93rem;line-height:1.75;max-width:32ch}
+footer h4{color:#fff;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+footer ul{list-style:none}footer li{margin-bottom:10px}
+footer li a{font-size:.94rem}footer li a:hover{color:#fff}
+footer .ct a{display:block;color:#fff;font-weight:600;margin-bottom:9px}
+footer .ct .addr{font-size:.92rem;line-height:1.7}
+.f-base{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:24px;font-size:.82rem;color:#7B97A8}
+.f-base a{color:#86C8EC}
 
-/* reveal */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
 .reveal.in{opacity:1;transform:none}
-
-.ribbon{position:fixed;bottom:0;left:0;right:0;z-index:99;background:var(--ink);color:#fff;text-align:center;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;padding:8px;opacity:.92}
+.ribbon{position:fixed;bottom:0;left:0;right:0;z-index:99;background:var(--blue-dark);color:#fff;text-align:center;font-size:.7rem;letter-spacing:.1em;padding:8px;opacity:.95}
 </style>
 </head>
 <body>
 
-<header id="hdr">
+<!-- utility -->
+<div class="util">
+  <div class="wrap">
+    <div class="l">
+      <a href="tel:02086655960">020 8665 5960</a>
+      <a href="mailto:tony@cobraconcrete.co.uk">tony@cobraconcrete.co.uk</a>
+    </div>
+    <div class="r">
+      <span class="areas">London · Kent · Surrey</span>
+      <span class="tag"><span class="dot"></span>24hr service — Trade &amp; DIY</span>
+    </div>
+  </div>
+</div>
+
+<!-- header -->
+<header>
   <div class="wrap">
     <a class="brand" href="#"><img src="assets/logo.png" alt="Cobra Concrete"></a>
     <nav class="main">
       <a href="#services">Services</a>
-      <a href="#volumetric">Mix on site</a>
-      <a href="#grades">Specs</a>
+      <a href="#about">About</a>
+      <a href="#why">Why Cobra</a>
       <a href="#areas">Areas</a>
+      <a href="#contact">Contact</a>
     </nav>
-    <a class="nav-cta" href="#contact">020 8665 5960</a>
-    <div class="burger"><span></span><span></span><span></span></div>
+    <div class="h-cta">
+      <a class="h-phone" href="tel:02086655960">020 8665 5960</a>
+      <a class="btn btn-pri" href="#contact">Get a Quote</a>
+      <div class="burger"><span></span><span></span><span></span></div>
+    </div>
   </div>
 </header>
 
 <!-- hero -->
 <section class="hero">
-  <div class="label">Ready-mix &nbsp;·&nbsp; Volumetric &nbsp;·&nbsp; London, Kent &amp; Surrey</div>
-  <h1>Concrete you can <b>build on</b>.</h1>
-  <div class="rule rule-c"></div>
-  <p class="sub">A family-run volumetric supplier of over twenty years. Mixed fresh to your exact spec, delivered, barrowed and laid, and you only ever pay for what you pour.</p>
-  <div class="hero-cta">
-    <a class="btn btn-fill" href="#contact">Get a quote
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    <a class="btn btn-text" href="#services">View our services
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-  </div>
-  <div class="scroll-cue"><span>Scroll</span><span class="ln"></span></div>
-</section>
-
-<!-- cinematic band -->
-<section class="band">
-  <div class="img"></div>
-  <div class="cap">
-    <div class="wrap">
-      <div>
-        <div class="label">Our volumetric fleet</div>
-        <p>Mixing on site, right across the South East.</p>
-      </div>
-      <div class="stats">
-        <div class="s"><b>20+</b><span>Years</span></div>
-        <div class="s"><b>24hr</b><span>Service</span></div>
-        <div class="s"><b>C10–C40</b><span>All grades</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- intro -->
-<section class="sec intro">
-  <div class="wrap center reveal">
-    <div class="label label-grey">Who we are</div>
-    <h2>A family firm that pours like a <b>big one</b>.</h2>
-    <p class="sub">Cobra Concrete has supplied trade and DIY customers across London, Kent and Surrey for over twenty years. From a single barrow load for a garden path to the foundations of a new build, we turn up when we say we will and we get it right first time.</p>
-  </div>
-</section>
-
-<!-- services -->
-<section class="sec sec-soft" id="services">
+  <div class="bg"></div>
   <div class="wrap">
-    <div class="svc-head reveal">
-      <div>
-        <div class="label">What we do</div>
-        <h2>One supplier for the whole pour</h2>
+    <div class="inner">
+      <div class="kick">Ready-Mix &amp; Volumetric Concrete</div>
+      <h1>Your local concrete supplier across <em>London, Kent &amp; Surrey</em></h1>
+      <p>A family-run business with over 20 years in the trade. We mix fresh on site to your exact grade and volume, so you only ever pay for what you pour.</p>
+      <div class="hero-cta">
+        <a class="btn btn-pri" href="#contact">Get a free quote
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-out" href="tel:02086655960">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          Call the yard</a>
       </div>
-      <p class="sub">Supplied, mixed, barrowed, pumped or laid. Whatever the job needs, we cover it from start to finish.</p>
-    </div>
-    <div class="svc-grid">
-      <a class="svc reveal" href="#"><div class="ph"><span class="n">01</span><img src="assets/hero-slider.jpg" alt=""></div><h3>Mix on Site</h3><p>Volumetric mixing to your exact strength and volume, fresh at your kerb. Pay only for what you pour.</p><div class="ln"></div></a>
-      <a class="svc reveal" href="#"><div class="ph"><span class="n">02</span><img src="assets/svc-pumping.jpg" alt=""></div><h3>Concrete Pumping</h3><p>Reach the awkward pours, over buildings, through houses and into back gardens with ease.</p><div class="ln"></div></a>
-      <a class="svc reveal" href="#"><div class="ph"><span class="n">03</span><img src="assets/svc-laying.jpg" alt=""></div><h3>Foundations</h3><p>Site surveys, excavation, level bases and reinforced foundations, built to meet regulations.</p><div class="ln"></div></a>
-      <a class="svc reveal" href="#"><div class="ph"><span class="n">04</span><img src="assets/svc-barrow.jpg" alt=""></div><h3>Barrow Service</h3><p>We barrow the concrete straight from the truck to where you need it. Ideal for domestic jobs.</p><div class="ln"></div></a>
-      <a class="svc reveal" href="#"><div class="ph"><span class="n">05</span><img src="assets/svc-mixbarrowlay.jpg" alt=""></div><h3>Laying Service</h3><p>Not laying it yourself? Our team levels, places and finishes the slab properly for you.</p><div class="ln"></div></a>
-      <a class="svc reveal" href="#"><div class="ph"><span class="n">06</span><img src="assets/svc-mixbarrowlay.jpg" alt=""></div><h3>Mix, Barrow &amp; Lay</h3><p>The whole job in one visit, mixed, moved and laid as a single all-in service.</p><div class="ln"></div></a>
+      <div class="hero-trust">
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Mixed on site</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Same-day &amp; 24hr</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>No part-load charges</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- feature -->
-<section class="sec feat" id="volumetric">
+<!-- services (signature tiles) -->
+<section class="sec" id="services">
   <div class="wrap">
-    <div class="ph reveal"><img src="assets/svc-mixbarrowlay.jpg" alt="Volumetric concrete"></div>
+    <div class="head center reveal">
+      <div class="kick">Our Services</div>
+      <h2>One supplier for the whole pour</h2>
+      <p>Supplied, mixed, barrowed, pumped or laid. Whatever your job needs, we cover it.</p>
+    </div>
+    <div class="tiles">
+      <a class="tile reveal" href="#"><img src="assets/hero-slider.jpg" alt=""><div class="c"><h3>Mix on Site</h3><span class="go">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+      <a class="tile reveal" href="#"><img src="assets/svc-pumping.jpg" alt=""><div class="c"><h3>Concrete Pumping</h3><span class="go">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+      <a class="tile reveal" href="#"><img src="assets/svc-laying.jpg" alt=""><div class="c"><h3>Foundations</h3><span class="go">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+      <a class="tile reveal" href="#"><img src="assets/svc-barrow.jpg" alt=""><div class="c"><h3>Barrow Service</h3><span class="go">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+      <a class="tile reveal" href="#"><img src="assets/svc-mixbarrowlay.jpg" alt=""><div class="c"><h3>Laying Service</h3><span class="go">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+      <a class="tile reveal" href="#"><img src="assets/svc-mixbarrowlay.jpg" alt=""><div class="c"><h3>Mix, Barrow &amp; Lay</h3><span class="go">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- about -->
+<section class="sec sec-soft about" id="about">
+  <div class="wrap">
+    <div class="media reveal">
+      <img src="assets/svc-mixbarrowlay.jpg" alt="Cobra Concrete on site">
+      <img class="emblem" src="assets/emblem.png" alt="">
+    </div>
     <div class="reveal">
-      <div class="label">Why volumetric</div>
-      <h2>You pay for what you <b>pour</b>.</h2>
-      <p>Drum mixers leave you guessing. Order too little and you are stuck, order too much and you have paid for concrete that ends up in a skip. Our on-site mixers solve both, fresh to the exact grade and the exact amount.</p>
-      <div class="flist">
-        <div class="r"><span class="k">Fresh</span><span class="v">Mixed on your site, never going off in transit</span></div>
-        <div class="r"><span class="k">Exact</span><span class="v">Any grade from C10 through to C40, mixed to spec</span></div>
-        <div class="r"><span class="k">No waste</span><span class="v">No part-load charges, you pay for what you use</span></div>
+      <div class="kick">Welcome to Cobra Concrete</div>
+      <h2>A family firm that pours like a big one</h2>
+      <p>Cobra Concrete is a family-run business with over 20 years of experience supplying quality concrete to trade and DIY customers across London, Kent and Surrey.</p>
+      <p>We supply all grades, from foundation mixes to slab mix. Our volumetric vehicles mix on site to the exact strength and quantity you need, with little to no mess.</p>
+      <div class="points">
+        <div class="pt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Over 20 years' experience</div>
+        <div class="pt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>All grades, C10 to C40</div>
+        <div class="pt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Trade &amp; DIY welcome</div>
+        <div class="pt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>Pay for what you pour</div>
       </div>
-      <a class="btn btn-fill" href="#contact">Book a load
+      <a class="btn btn-ink" href="#services">Our concrete services
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
 </section>
 
-<!-- grades -->
-<section class="sec sec-soft" id="grades">
+<!-- why band -->
+<section class="why" id="why">
   <div class="wrap">
-    <div class="center reveal" style="margin-bottom:clamp(44px,6vw,72px)">
-      <div class="label">Concrete specs</div>
-      <h2>The right mix for the job</h2>
-      <p class="sub">Not sure which grade you need? Give us a call and we will spec it for you.</p>
-    </div>
-    <div class="grades-list">
-      <div class="grade reveal"><div class="g">C10–C15</div><div class="d">Kerb bedding, trench fill and non-structural backing.</div><div class="u">10–15 N/mm²</div></div>
-      <div class="grade reveal"><div class="g">C20–C25</div><div class="d">Domestic foundations, footings, garage and shed bases.</div><div class="u">20–25 N/mm²</div></div>
-      <div class="grade reveal"><div class="g">C30–C35</div><div class="d">Driveways, paths, hardstanding and external slabs.</div><div class="u">30–35 N/mm²</div></div>
-      <div class="grade reveal"><div class="g">C40</div><div class="d">Heavy-duty commercial, structural and agricultural use.</div><div class="u">40 N/mm²</div></div>
-    </div>
+    <div class="w reveal"><b>20+</b><span>Years supplying the South East</span></div>
+    <div class="w reveal"><b>24hr</b><span>Service for trade &amp; DIY</span></div>
+    <div class="w reveal"><b>C10–C40</b><span>Every grade mixed to spec</span></div>
+    <div class="w reveal"><b>0</b><span>Part-load charges, ever</span></div>
   </div>
 </section>
 
 <!-- areas -->
-<section class="sec areas" id="areas">
+<section class="sec" id="areas">
   <div class="wrap">
-    <div class="center reveal">
-      <div class="label">Where we pour</div>
-      <h2>On site across the South East</h2>
-      <p class="sub">Based in Beckenham, delivering daily across London, Kent and Surrey.</p>
+    <div class="head center reveal">
+      <div class="kick">Areas We Serve</div>
+      <h2>Delivering daily across the South East</h2>
+      <p>Based in Beckenham, covering London, Kent and Surrey.</p>
     </div>
-    <div class="area-flow reveal">
-      <a href="#">Beckenham</a><a href="#">Bromley</a><a href="#">Croydon</a><a href="#">Sutton</a>
-      <a href="#">Sidcup</a><a href="#">Bexley</a><a href="#">Orpington</a><a href="#">Greenwich</a>
-      <a href="#">Epsom</a><a href="#">Swanley</a><a href="#">Reigate</a><a href="#">Kingswood</a>
+    <div class="areas-grid reveal">
+      <span class="area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Beckenham</span>
+      <span class="area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Bromley</span>
+      <span class="area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Croydon</span>
+      <span class="area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Sutton</span>
+      <span class="area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Sidcup</span>
+      <span class="area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Bexley</span>
+      <span class="area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Orpington</span>
+      <span class="area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Greenwich</span>
+      <span class="area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Epsom</span>
+      <span class="area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Swanley</span>
+      <span class="area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Reigate</span>
+      <span class="area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Kingswood</span>
     </div>
   </div>
 </section>
 
 <!-- cta -->
 <section class="cta" id="contact">
-  <div class="img"></div>
+  <div class="bg"></div>
   <div class="wrap">
-    <div class="label">Get in touch</div>
-    <h2>Tell us about your job</h2>
-    <p>Give us the details and we will tell you the right mix and the price. Same-day and 24hr service for trade and DIY.</p>
-    <div class="cta-row">
-      <a class="btn btn-white" href="mailto:tony@cobraconcrete.co.uk">Request a quote
+    <div class="kick" style="color:#86C8EC">Let's talk about your project</div>
+    <h2 style="margin-top:14px">Tell us the job, we'll tell you the mix and price</h2>
+    <p>Same-day and 24hr service for trade and DIY customers right across the South East.</p>
+    <div class="row">
+      <a class="btn btn-pri" href="mailto:tony@cobraconcrete.co.uk">Request a quote
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <a class="phone" href="tel:02086655960">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
         020 8665 5960</a>
     </div>
   </div>
@@ -311,7 +303,7 @@ footer .ct .addr{font-size:.92rem;font-weight:300;line-height:1.8}
 <!-- footer -->
 <footer>
   <div class="wrap">
-    <div class="f-top">
+    <div class="f-grid">
       <div>
         <img class="flogo" src="assets/logo.png" alt="Cobra Concrete Ltd">
         <p class="ab">Family-run ready-mix and volumetric concrete supplier, serving trade and DIY across London, Kent and Surrey for over 20 years.</p>
@@ -321,8 +313,9 @@ footer .ct .addr{font-size:.92rem;font-weight:300;line-height:1.8}
         <li><a href="#">Foundations</a></li><li><a href="#">Barrow Service</a></li>
         <li><a href="#">Mix, Barrow &amp; Lay</a></li></ul></div>
       <div><h4>Company</h4><ul>
-        <li><a href="#">Concrete Specs</a></li><li><a href="#">Gallery</a></li>
-        <li><a href="#">Areas We Cover</a></li><li><a href="#">Contact</a></li></ul></div>
+        <li><a href="#">About Us</a></li><li><a href="#">Concrete Specs</a></li>
+        <li><a href="#">Gallery</a></li><li><a href="#">Areas We Cover</a></li>
+        <li><a href="#">Contact</a></li></ul></div>
       <div class="ct"><h4>Get in touch</h4>
         <a href="tel:02086655960">020 8665 5960</a>
         <a href="mailto:tony@cobraconcrete.co.uk">tony@cobraconcrete.co.uk</a>
@@ -338,9 +331,7 @@ footer .ct .addr{font-size:.92rem;font-weight:300;line-height:1.8}
 <div class="ribbon">Redesign concept · Nu Media Group · not the live site</div>
 
 <script>
-const hdr=document.getElementById('hdr');
-addEventListener('scroll',()=>{hdr.classList.toggle('solid',scrollY>40)},{passive:true});
-const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
 </body>
