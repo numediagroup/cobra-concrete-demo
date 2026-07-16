@@ -131,7 +131,7 @@ footer{background:var(--blue-dark);color:#A8C2D2;padding:64px 0 28px}
 .f-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:42px;border-bottom:1px solid rgba(255,255,255,.12)}
 @media(max-width:820px){.f-grid{grid-template-columns:1fr 1fr;gap:30px}}
 @media(max-width:520px){.f-grid{grid-template-columns:1fr}}
-footer .flogo{height:54px;filter:brightness(0) invert(1);opacity:.95;margin-bottom:18px}
+footer .flogo{height:44px;background:#fff;padding:10px 15px;border-radius:9px;margin-bottom:18px}
 footer .ab{font-size:.93rem;line-height:1.75;max-width:32ch}
 footer h4{color:#fff;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
 footer ul{list-style:none}footer li{margin-bottom:10px}
@@ -333,6 +333,163 @@ footer .ct .addr{font-size:.92rem;line-height:1.7}
 <script>
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<!--
+  ===========================================================================
+  NU MEDIA  -  CONCEPT FEEDBACK BADGE  (drop-in)
+  ---------------------------------------------------------------------------
+  WHAT IT DOES: a small "Design concept" badge appears bottom-centre as the
+  client scrolls. Hover = Like / Give feedback. Click = a quick Yes/No flow.
+  Their answers email Aaron and copy Katie + Anastasia.
+
+  HOW TO ADD IT:
+   - Plain HTML mockup (or a Claude Code build): paste this WHOLE block in
+     once, just before the closing  </body>  tag.
+   - Lovable: open the project's  index.html  and paste it before  </body>.
+
+  TO CHANGE WHO GETS THE FEEDBACK: edit the TO and CC lines in the script below.
+  NOTE: the first time feedback is sent from a brand-new web address, FormSubmit
+  emails Aaron a one-time "Activate Form" link. Click it once and that site is live.
+  ===========================================================================
+-->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.nmfb-badge,.nmfb-badge *,.nmfb-panel,.nmfb-panel *{font-family:'Montserrat',system-ui,-apple-system,sans-serif !important}
+.nmfb-badge{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(8px);z-index:2147483000;display:flex;align-items:center;gap:12px;padding:10px 18px;border-radius:100px;background:rgba(8,26,48,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.16);box-shadow:0 14px 44px -14px rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .5s ease,transform .5s ease;cursor:pointer}
+.nmfb-badge.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.nmfb-dot{width:9px;height:9px;border-radius:50%;background:#6ddad7;box-shadow:0 0 0 4px rgba(109,218,215,.22);flex:none}
+.nmfb-rest{color:#fff;font-weight:600;font-size:13px;white-space:nowrap}
+.nmfb-div{width:1px;height:17px;background:rgba(255,255,255,.26)}
+.nmfb-logo{height:16px;width:auto;display:block}
+.nmfb-sendlogo{height:14px;width:auto;display:block;flex:none}
+.nmfb-actions{display:flex;align-items:center;gap:8px;max-width:0;opacity:0;overflow:hidden;margin-left:0;transition:max-width .3s ease,opacity .25s ease,margin-left .3s ease}
+.nmfb-badge.show:hover .nmfb-actions{max-width:250px;opacity:1;margin-left:4px}
+.nmfb-like,.nmfb-fb{border:none;cursor:pointer;white-space:nowrap;font-weight:600;font-size:12px;padding:7px 13px;border-radius:100px;display:flex;align-items:center;gap:5px}
+.nmfb-like{background:rgba(109,218,215,.16);color:#9fe9e7}
+.nmfb-like svg{width:13px;height:13px;stroke:#6ddad7;fill:none}
+.nmfb-like:hover{background:rgba(109,218,215,.3)}
+.nmfb-fb{background:#fff;color:#0B1F3A}
+.nmfb-fb:hover{background:#e8eef6}
+.nmfb-panel{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:2147483001;width:360px;max-width:calc(100vw - 32px);max-height:calc(100vh - 90px);overflow:auto;background:#fff;border-radius:16px;box-shadow:0 22px 60px -18px rgba(0,0,0,.5);display:none}
+.nmfb-ph{background:#0B1F3A;padding:14px 17px;display:flex;align-items:center;justify-content:space-between}
+.nmfb-ph span{color:#fff;font-size:14px;font-weight:600}
+.nmfb-ph button{background:transparent;border:none;color:rgba(255,255,255,.85);cursor:pointer;font-size:20px;line-height:1;padding:0}
+.nmfb-pb{padding:18px 17px}
+.nmfb-q{font-size:16px;color:#0B1F3A;font-weight:600;margin:0 0 15px}
+.nmfb-yn{display:flex;gap:11px}
+.nmfb-yn button{flex:1;border:1px solid #d3dae2;background:#fff;color:#0B1F3A;font-size:15px;font-weight:600;padding:14px 8px;border-radius:10px;cursor:pointer}
+.nmfb-yn button:hover{border-color:#0B1F3A}
+.nmfb-intro{font-size:14px;color:#0B1F3A;margin:0 0 13px;line-height:1.5}
+.nmfb-lab{font-size:13px;color:#5a6b78;display:block;margin-bottom:6px}
+.nmfb-ta{width:100%;min-height:56px;border:1px solid #d3dae2;border-radius:9px;padding:9px;font-size:14px;margin-bottom:13px;resize:vertical;box-sizing:border-box}
+.nmfb-ta:focus{outline:none;border-color:#6ddad7}
+.nmfb-send{width:100%;background:#0B1F3A;color:#fff;border:none;border-radius:10px;padding:13px;font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.nmfb-send:hover{background:#13284a}
+.nmfb-back{background:transparent;border:none;color:#8a98a4;font-size:13px;cursor:pointer;padding:0;margin-bottom:11px}
+.nmfb-done{text-align:center;padding:12px 6px 16px}
+.nmfb-done .ck{width:44px;height:44px;border-radius:50%;background:#0B1F3A;display:flex;align-items:center;justify-content:center;margin:0 auto 13px}
+.nmfb-done .ck svg{width:22px;height:22px;stroke:#6ddad7;fill:none}
+.nmfb-done h4{margin:0 0 4px;font-size:16px;color:#0B1F3A;font-weight:600}
+.nmfb-done p{margin:0;font-size:14px;color:#5a6b78}
+</style>
+<div class="nmfb-badge" id="nmfbBadge" role="button" tabindex="0" aria-label="Give feedback on this concept">
+<span class="nmfb-dot"></span>
+<span class="nmfb-rest">Design concept</span>
+<span class="nmfb-div"></span>
+<svg class="nmfb-logo" viewBox="100 250 384 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nu Media">
+    <circle cx="414.82" cy="269.49" r="7.59" fill="#6ddad7"/>
+    <path d="M106.76,305.02c0-15.41,9.15-23.34,22.78-23.34s22.78,7.84,22.78,23.34v24h-11.11v-24c0-8.78-4.67-12.98-11.67-12.98s-11.67,4.2-11.67,12.98v24h-11.11v-24Z" fill="#6ddad7"/>
+    <path d="M161.48,306.88v-24h11.11v24c0,8.78,4.67,12.98,11.67,12.98s11.67-4.2,11.67-12.98v-24h11.11v24c0,15.41-9.15,23.34-22.78,23.34s-22.78-7.84-22.78-23.34Z" fill="#6ddad7"/>
+    <path d="M216.2,302.68c0-14.47,8.4-21.01,19.33-21.01,6.91,0,12.61,2.89,15.97,8.31,3.27-5.42,8.96-8.31,15.97-8.31,10.93,0,19.33,6.54,19.33,21.01v26.33h-11.11v-26.33c0-7.56-3.92-10.65-9.34-10.65s-9.24,3.17-9.24,10.65v26.33h-11.11v-26.33c0-7.47-4.02-10.65-9.34-10.65s-9.34,3.08-9.34,10.65v26.33h-11.11v-26.33Z" fill="#fff"/>
+    <path d="M294.08,305.95c0-14.01,10.27-24.28,24.84-24.28s24.65,10.27,24.65,24.28v3.92h-37.82c1.49,6.72,6.63,10.27,13.17,10.27,4.95,0,8.59-1.4,10.93-4.39h11.86c-3.46,8.78-11.86,14.47-22.78,14.47-14.57,0-24.84-10.27-24.84-24.28ZM331.8,301c-1.77-6.16-6.82-9.24-12.89-9.24s-11.11,3.17-12.89,9.24h25.77Z" fill="#fff"/>
+    <path d="M348.99,305.48c0-15.78,11.77-23.81,22.97-23.81,6.63,0,12.14,2.8,15.41,7.94v-26.89h11.11v42.86c0,14.94-10.08,24.65-24.56,24.65s-24.93-10.08-24.93-24.75ZM387.36,305.95c0-8.12-5.42-13.91-13.54-13.91s-13.63,5.79-13.63,13.91,5.51,13.91,13.63,13.91,13.54-5.79,13.54-13.91Z" fill="#fff"/>
+    <path d="M407.44,269.53c0-4.3,3.08-7.47,7.38-7.47s7.38,3.17,7.38,7.47-3.08,7.38-7.38,7.38-7.38-3.08-7.38-7.38ZM409.21,282.89h11.11v46.13h-11.11v-46.13Z" fill="#fff"/>
+    <path d="M429.2,306.42c0-14.66,10.27-24.74,24.93-24.74s24.56,9.8,24.56,24.65v22.69h-10.18v-9.06c-2.8,6.82-9.06,10.27-16.34,10.27-11.21,0-22.97-8.03-22.97-23.81ZM467.58,305.95c0-8.12-5.42-13.91-13.54-13.91s-13.63,5.79-13.63,13.91,5.51,13.91,13.63,13.91,13.54-5.79,13.54-13.91Z" fill="#fff"/>
+  </svg>
+<span class="nmfb-actions">
+<button class="nmfb-like" id="nmfbLike" type="button"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>Like</button>
+<button class="nmfb-fb" id="nmfbFb" type="button">Give feedback</button>
+</span>
+</div>
+<div class="nmfb-panel" id="nmfbPanel" aria-live="polite">
+<div class="nmfb-ph"><span id="nmfbHead">Quick feedback</span><button id="nmfbClose" aria-label="Close">&times;</button></div>
+<div class="nmfb-pb">
+<div id="nmfbStep1">
+<p class="nmfb-q">Do you like this design?</p>
+<div class="nmfb-yn"><button id="nmfbYes" type="button">Yes</button><button id="nmfbNo" type="button">No</button></div>
+</div>
+<div id="nmfbYesStep" style="display:none">
+<button class="nmfb-back" data-back type="button">&larr; back</button>
+<p class="nmfb-intro">Brilliant, thank you. Just two quick things.</p>
+<label class="nmfb-lab">What do you like about it?</label>
+<textarea class="nmfb-ta" id="nmfbY1"></textarea>
+<label class="nmfb-lab">Is there anything you would change?</label>
+<textarea class="nmfb-ta" id="nmfbY2"></textarea>
+<button class="nmfb-send" data-send="yes" type="button">Send to<svg class="nmfb-sendlogo" viewBox="100 250 384 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nu Media">
+    <circle cx="414.82" cy="269.49" r="7.59" fill="#6ddad7"/>
+    <path d="M106.76,305.02c0-15.41,9.15-23.34,22.78-23.34s22.78,7.84,22.78,23.34v24h-11.11v-24c0-8.78-4.67-12.98-11.67-12.98s-11.67,4.2-11.67,12.98v24h-11.11v-24Z" fill="#6ddad7"/>
+    <path d="M161.48,306.88v-24h11.11v24c0,8.78,4.67,12.98,11.67,12.98s11.67-4.2,11.67-12.98v-24h11.11v24c0,15.41-9.15,23.34-22.78,23.34s-22.78-7.84-22.78-23.34Z" fill="#6ddad7"/>
+    <path d="M216.2,302.68c0-14.47,8.4-21.01,19.33-21.01,6.91,0,12.61,2.89,15.97,8.31,3.27-5.42,8.96-8.31,15.97-8.31,10.93,0,19.33,6.54,19.33,21.01v26.33h-11.11v-26.33c0-7.56-3.92-10.65-9.34-10.65s-9.24,3.17-9.24,10.65v26.33h-11.11v-26.33c0-7.47-4.02-10.65-9.34-10.65s-9.34,3.08-9.34,10.65v26.33h-11.11v-26.33Z" fill="#fff"/>
+    <path d="M294.08,305.95c0-14.01,10.27-24.28,24.84-24.28s24.65,10.27,24.65,24.28v3.92h-37.82c1.49,6.72,6.63,10.27,13.17,10.27,4.95,0,8.59-1.4,10.93-4.39h11.86c-3.46,8.78-11.86,14.47-22.78,14.47-14.57,0-24.84-10.27-24.84-24.28ZM331.8,301c-1.77-6.16-6.82-9.24-12.89-9.24s-11.11,3.17-12.89,9.24h25.77Z" fill="#fff"/>
+    <path d="M348.99,305.48c0-15.78,11.77-23.81,22.97-23.81,6.63,0,12.14,2.8,15.41,7.94v-26.89h11.11v42.86c0,14.94-10.08,24.65-24.56,24.65s-24.93-10.08-24.93-24.75ZM387.36,305.95c0-8.12-5.42-13.91-13.54-13.91s-13.63,5.79-13.63,13.91,5.51,13.91,13.63,13.91,13.54-5.79,13.54-13.91Z" fill="#fff"/>
+    <path d="M407.44,269.53c0-4.3,3.08-7.47,7.38-7.47s7.38,3.17,7.38,7.47-3.08,7.38-7.38,7.38-7.38-3.08-7.38-7.38ZM409.21,282.89h11.11v46.13h-11.11v-46.13Z" fill="#fff"/>
+    <path d="M429.2,306.42c0-14.66,10.27-24.74,24.93-24.74s24.56,9.8,24.56,24.65v22.69h-10.18v-9.06c-2.8,6.82-9.06,10.27-16.34,10.27-11.21,0-22.97-8.03-22.97-23.81ZM467.58,305.95c0-8.12-5.42-13.91-13.54-13.91s-13.63,5.79-13.63,13.91,5.51,13.91,13.63,13.91,13.54-5.79,13.54-13.91Z" fill="#fff"/>
+  </svg></button>
+</div>
+<div id="nmfbNoStep" style="display:none">
+<button class="nmfb-back" data-back type="button">&larr; back</button>
+<p class="nmfb-intro">No problem at all. This is only a mockup and we are still in the design phase, so this is exactly the moment to tell us. It helps us understand you and your brand.</p>
+<label class="nmfb-lab">What is not quite right for you?</label>
+<textarea class="nmfb-ta" id="nmfbN1"></textarea>
+<label class="nmfb-lab">What would you prefer instead?</label>
+<textarea class="nmfb-ta" id="nmfbN2"></textarea>
+<button class="nmfb-send" data-send="no" type="button">Send to<svg class="nmfb-sendlogo" viewBox="100 250 384 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nu Media">
+    <circle cx="414.82" cy="269.49" r="7.59" fill="#6ddad7"/>
+    <path d="M106.76,305.02c0-15.41,9.15-23.34,22.78-23.34s22.78,7.84,22.78,23.34v24h-11.11v-24c0-8.78-4.67-12.98-11.67-12.98s-11.67,4.2-11.67,12.98v24h-11.11v-24Z" fill="#6ddad7"/>
+    <path d="M161.48,306.88v-24h11.11v24c0,8.78,4.67,12.98,11.67,12.98s11.67-4.2,11.67-12.98v-24h11.11v24c0,15.41-9.15,23.34-22.78,23.34s-22.78-7.84-22.78-23.34Z" fill="#6ddad7"/>
+    <path d="M216.2,302.68c0-14.47,8.4-21.01,19.33-21.01,6.91,0,12.61,2.89,15.97,8.31,3.27-5.42,8.96-8.31,15.97-8.31,10.93,0,19.33,6.54,19.33,21.01v26.33h-11.11v-26.33c0-7.56-3.92-10.65-9.34-10.65s-9.24,3.17-9.24,10.65v26.33h-11.11v-26.33c0-7.47-4.02-10.65-9.34-10.65s-9.34,3.08-9.34,10.65v26.33h-11.11v-26.33Z" fill="#fff"/>
+    <path d="M294.08,305.95c0-14.01,10.27-24.28,24.84-24.28s24.65,10.27,24.65,24.28v3.92h-37.82c1.49,6.72,6.63,10.27,13.17,10.27,4.95,0,8.59-1.4,10.93-4.39h11.86c-3.46,8.78-11.86,14.47-22.78,14.47-14.57,0-24.84-10.27-24.84-24.28ZM331.8,301c-1.77-6.16-6.82-9.24-12.89-9.24s-11.11,3.17-12.89,9.24h25.77Z" fill="#fff"/>
+    <path d="M348.99,305.48c0-15.78,11.77-23.81,22.97-23.81,6.63,0,12.14,2.8,15.41,7.94v-26.89h11.11v42.86c0,14.94-10.08,24.65-24.56,24.65s-24.93-10.08-24.93-24.75ZM387.36,305.95c0-8.12-5.42-13.91-13.54-13.91s-13.63,5.79-13.63,13.91,5.51,13.91,13.63,13.91,13.54-5.79,13.54-13.91Z" fill="#fff"/>
+    <path d="M407.44,269.53c0-4.3,3.08-7.47,7.38-7.47s7.38,3.17,7.38,7.47-3.08,7.38-7.38,7.38-7.38-3.08-7.38-7.38ZM409.21,282.89h11.11v46.13h-11.11v-46.13Z" fill="#fff"/>
+    <path d="M429.2,306.42c0-14.66,10.27-24.74,24.93-24.74s24.56,9.8,24.56,24.65v22.69h-10.18v-9.06c-2.8,6.82-9.06,10.27-16.34,10.27-11.21,0-22.97-8.03-22.97-23.81ZM467.58,305.95c0-8.12-5.42-13.91-13.54-13.91s-13.63,5.79-13.63,13.91,5.51,13.91,13.63,13.91,13.54-5.79,13.54-13.91Z" fill="#fff"/>
+  </svg></button>
+</div>
+<div id="nmfbDone" style="display:none" class="nmfb-done">
+<div class="ck"><svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
+<h4>Thank you, that is on its way</h4>
+<p>The nu media team will be in touch shortly.</p>
+</div>
+</div>
+</div>
+<script>
+(function(){
+/* === WHO RECEIVES THE FEEDBACK (edit these two lines if needed) === */
+var TO='aaron@numediagroup.co.uk';
+var CC='katie@numediagroup.co.uk,anastasia@numediagroup.co.uk';
+/* ================================================================== */
+var b=document.getElementById('nmfbBadge'),p=document.getElementById('nmfbPanel'),head=document.getElementById('nmfbHead');
+var s1=document.getElementById('nmfbStep1'),sy=document.getElementById('nmfbYesStep'),sn=document.getElementById('nmfbNoStep'),sd=document.getElementById('nmfbDone');
+function show(el){[s1,sy,sn,sd].forEach(function(x){x.style.display='none'});el.style.display='block'}
+function openP(t){p.style.display='block';b.style.display='none';head.textContent='Quick feedback';show(t||s1)}
+function closeP(){p.style.display='none';b.style.display='flex'}
+b.addEventListener('click',function(){openP(s1)});
+b.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openP(s1)}});
+document.getElementById('nmfbLike').addEventListener('click',function(e){e.stopPropagation();openP(sy)});
+document.getElementById('nmfbFb').addEventListener('click',function(e){e.stopPropagation();openP(s1)});
+document.getElementById('nmfbClose').addEventListener('click',closeP);
+document.getElementById('nmfbYes').addEventListener('click',function(){show(sy)});
+document.getElementById('nmfbNo').addEventListener('click',function(){show(sn)});
+document.querySelectorAll('[data-back]').forEach(function(x){x.addEventListener('click',function(){show(s1)})});
+document.querySelectorAll('[data-send]').forEach(function(btn){btn.addEventListener('click',function(){
+var yes=btn.getAttribute('data-send')==='yes';
+var a1=(document.getElementById(yes?'nmfbY1':'nmfbN1').value||'').trim();
+var a2=(document.getElementById(yes?'nmfbY2':'nmfbN2').value||'').trim();
+var payload={"Liked the design":yes?'Yes':'No',"What they like or dislike":a1,"What they would change or prefer":a2,"Mockup page":location.href,_subject:'New concept feedback from '+location.hostname,_template:'table',_captcha:'false',_cc:CC};
+fetch('https://formsubmit.co/ajax/'+TO,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(payload)}).then(function(){head.textContent='Thank you';show(sd)}).catch(function(){head.textContent='Thank you';show(sd)});
+})});
+var onScroll=function(){if(p.style.display!=='block'){b.classList.toggle('show',window.scrollY>240)}};
+window.addEventListener('scroll',onScroll);onScroll();
+})();
 </script>
 </body>
 </html>
